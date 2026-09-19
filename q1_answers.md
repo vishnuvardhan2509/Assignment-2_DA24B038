@@ -15,3 +15,24 @@
 
 ## Part 3: Explanation
 [Write your 2-3 sentences here — use the draft from the previous message as a starting point, but make it your own voice and reference the specific things in YOUR build.]
+
+
+
+
+
+
+
+
+
+
+
+
+
+Docker Compose solves single-host, multi-container orchestration — it lets you define several containers (here, the API and Redis) in one YAML file, spin them up together with docker compose up, and give them automatic DNS-based networking so api can reach cache by service name. A single Dockerfile can only build and run one container, so without Compose I'd have to manually start Redis, create a Docker network, attach both containers, and wire the hostnames by hand. Kubernetes, by contrast, is designed for cluster-scale orchestration: it schedules pods across many machines, handles node failures, autoscaling, rolling updates, and persistent storage — far more than Compose attempts. Compose is a developer/CI tool for one host; Kubernetes is a production platform for a fleet.
+
+
+
+
+
+
+
