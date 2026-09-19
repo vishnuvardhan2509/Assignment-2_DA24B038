@@ -1,0 +1,19 @@
+# Dockerfile.naive
+# Deliberately unoptimized single-stage build for Question 1.
+# Ships the whole project including venv, cache, CSV, and source.
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy EVERYTHING from the build context (this is the naive part —
+# includes .venv, spam_dataset.csv, __pycache__, .git, etc.)
+COPY . .
+
+# Install dependencies into the system Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+# Default model path is model.joblib in WORKDIR
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
